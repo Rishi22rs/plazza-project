@@ -45,6 +45,7 @@ yarn-error.*
 
 # Keep project notes, walkthroughs and agent instructions local.
 *.md
+!README.md
 /docs/
 
 # Installable build outputs stay local; share APK files directly.
