@@ -14,6 +14,8 @@ export const theme = {
     border: '#D5D9DD',
     white: '#FFFFFF',
   },
+  // Lato is a bundled visual approximation of the rounded reference typeface.
+  fonts: { regular: 'Lato_400Regular', bold: 'Lato_700Bold', display: 'Lato_900Black_Italic' },
   spacing: { xs: 4, sm: 8, md: 16, lg: 24, xl: 32 },
   radius: { sm: 8, md: 16, lg: 24 },
 } as const;

@@ -1,11 +1,13 @@
+import { useFonts, Lato_400Regular, Lato_700Bold, Lato_900Black_Italic } from '@expo-google-fonts/lato';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Tabs, usePathname } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { useWindowDimensions } from 'react-native';
+import { ActivityIndicator, View, useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { theme } from '../theme/theme';
 import { PermissionProvider } from '../permissions/PermissionProvider';
+import { CartProvider } from '../cart/CartProvider';
 
 /**
  * Expo Router reads this layout before rendering index.tsx or cart.tsx.
@@ -13,6 +15,7 @@ import { PermissionProvider } from '../permissions/PermissionProvider';
  * Screen files contain UI; they do not implement their own navigation system.
  */
 export default function RootLayout() {
+  const [fontsLoaded, fontError] = useFonts({ Lato_400Regular, Lato_700Bold, Lato_900Black_Italic });
   const insets = useSafeAreaInsets();
   const pathname = usePathname();
   const { fontScale } = useWindowDimensions();
@@ -22,8 +25,12 @@ export default function RootLayout() {
   const bottomSpace = Math.max(insets.bottom, 8);
   const labelSpace = Math.max(0, fontScale - 1) * 20;
 
+  // Fonts are packaged with the app; loading does not require a network request.
+  if (!fontsLoaded && !fontError) return <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}><ActivityIndicator color={theme.colors.purple} /></View>;
+
   return (
     <PermissionProvider>
+    <CartProvider>
     {/* One status-bar owner avoids inactive mounted tabs overriding its color. */}
     <StatusBar style={pathname === '/cart' ? 'dark' : 'light'} />
     <Tabs screenOptions={{
@@ -53,6 +60,7 @@ export default function RootLayout() {
         tabBarIcon: ({ color, focused }) => <Ionicons name={focused ? 'bag' : 'bag-outline'} size={26} color={typeof color === 'string' ? color : theme.colors.primary} />,
       }} />
     </Tabs>
+    </CartProvider>
     </PermissionProvider>
   );
 }
