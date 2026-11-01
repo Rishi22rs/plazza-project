@@ -3,15 +3,15 @@ import { router } from 'expo-router';
 import { Linking, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { useCart } from '../cart/CartProvider';
-import { formatMoney } from '../cart/promotions';
-import { catalog } from '../catalog/catalog';
-import { BillBreakdown } from '../components/BillBreakdown';
-import { CartItem } from '../components/CartItem';
-import { CouponPanel } from '../components/CouponPanel';
-import { EmptyState } from '../components/EmptyState';
-import { MobileContent } from '../components/MobileContent';
-import { theme } from '../theme/theme';
+import { useCart } from '../../cart/CartProvider';
+import { formatMoney } from '../../cart/promotions';
+import { catalog } from '../../catalog/catalog';
+import { BillBreakdown } from '../../components/BillBreakdown';
+import { CartItem } from '../../components/CartItem';
+import { CouponPanel } from '../../components/CouponPanel';
+import { EmptyState } from '../../components/EmptyState';
+import { MobileContent } from '../../components/MobileContent';
+import { theme } from '../../theme/theme';
 
 /** Screenshot-based composition. Money and coupon decisions stay in the provider. */
 export default function CartScreen() {

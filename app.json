@@ -4,23 +4,23 @@
     "slug": "plazza-project",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/plazza-icon.png",
     "userInterfaceStyle": "light",
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/android-icon-foreground.png",
-        "backgroundImage": "./assets/android-icon-background.png",
-        "monochromeImage": "./assets/android-icon-monochrome.png"
+        "backgroundColor": "#FF0099",
+        "foregroundImage": "./assets/plazza-adaptive-foreground.png",
+        "monochromeImage": "./assets/plazza-monochrome.png"
       },
       "predictiveBackGestureEnabled": false,
-      "package": "com.rishi22rs.plazza"
+      "package": "com.rishi22rs.plazza",
+      "versionCode": 1
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/plazza-favicon.png"
     },
     "plugins": [
       "expo-router",
