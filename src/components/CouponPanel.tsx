@@ -20,9 +20,9 @@ export function CouponPanel() {
 
   return <>
     <View style={styles.card}>
-      <View style={styles.banner}><Text style={styles.bannerTitle}>Save more with coupons</Text><Ionicons name="pricetags" size={30} color="#F59CCF" accessible={false} /></View>
+      <View style={styles.banner}><Text style={styles.bannerTitle}>Save more with coupons</Text><Ionicons name="pricetags" size={24} color="#F59CCF" accessible={false} /></View>
       <View style={styles.offer}>
-        <Ionicons name="pricetag" size={30} color="#00A77A" accessible={false} />
+        <Ionicons name="pricetag" size={24} color="#00A77A" accessible={false} />
         <View style={styles.copy}><Text style={styles.title}>{couponRules[featured].title}</Text><Text style={styles.description}>{couponRules[featured].description}</Text></View>
         <Pressable accessibilityRole="button" accessibilityLabel={cart.coupon ? `Remove ${cart.coupon}` : `Apply ${featured}`} disabled={!cart.ready} onPress={() => cart.coupon ? cart.removeCoupon() : apply(featured)} style={styles.apply}><Text style={styles.applyText}>{cart.coupon ? 'REMOVE' : 'APPLY'}</Text></Pressable>
       </View>
@@ -50,17 +50,17 @@ export function CouponPanel() {
   </>;
 }
 const styles = StyleSheet.create({
-  card: { backgroundColor: 'white', borderRadius: 16, marginTop: 18, overflow: 'hidden' },
-  banner: { backgroundColor: theme.colors.purple, paddingHorizontal: 14, paddingVertical: 18, flexDirection: 'row', alignItems: 'center', gap: 8 },
-  bannerTitle: { flex: 1, fontFamily: theme.fonts.bold, fontSize: 19, color: 'white' },
-  offer: { flexDirection: 'row', flexWrap: 'wrap', gap: 12, alignItems: 'center', padding: 18 },
-  copy: { flexGrow: 1, flexShrink: 1, flexBasis: 150, gap: 6 },
-  title: { fontFamily: theme.fonts.bold, fontSize: 16, color: theme.colors.text },
-  description: { fontFamily: theme.fonts.regular, fontSize: 14, lineHeight: 21, color: theme.colors.textSecondary },
-  apply: { minHeight: 48, paddingHorizontal: 12, paddingVertical: 12, borderColor: '#A38BBC', borderWidth: 1, borderRadius: 10, alignItems: 'center', justifyContent: 'center', alignSelf: 'flex-start' },
+  card: { backgroundColor: 'white', borderRadius: 16, marginTop: 14, overflow: 'hidden' },
+  banner: { backgroundColor: theme.colors.purple, paddingHorizontal: 14, paddingVertical: 12, flexDirection: 'row', alignItems: 'center', gap: 8 },
+  bannerTitle: { flex: 1, fontFamily: theme.fonts.bold, fontSize: 17, color: 'white' },
+  offer: { flexDirection: 'row', flexWrap: 'wrap', gap: 10, alignItems: 'center', paddingHorizontal: 14, paddingTop: 14, paddingBottom: 4 },
+  copy: { flexGrow: 1, flexShrink: 1, flexBasis: 120, gap: 4 },
+  title: { fontFamily: theme.fonts.bold, fontSize: 14, color: theme.colors.text },
+  description: { fontFamily: theme.fonts.regular, fontSize: 12, lineHeight: 18, color: theme.colors.textSecondary },
+  apply: { minHeight: 48, paddingHorizontal: 10, paddingVertical: 10, borderColor: '#A38BBC', borderWidth: 1, borderRadius: 10, alignItems: 'center', justifyContent: 'center', alignSelf: 'flex-start' },
   applyText: { fontFamily: theme.fonts.bold, fontSize: 13, color: '#9473B2' },
-  all: { minHeight: 52, alignItems: 'center', justifyContent: 'center', padding: 12 },
-  allText: { fontFamily: theme.fonts.bold, color: theme.colors.purple, fontSize: 15 },
+  all: { minHeight: 48, alignItems: 'center', justifyContent: 'center', padding: 12 },
+  allText: { fontFamily: theme.fonts.bold, color: theme.colors.purple, fontSize: 13 },
   overlay: { flex: 1, justifyContent: 'flex-end', backgroundColor: '#00000066' },
   sheet: { maxHeight: '85%', padding: 18, backgroundColor: 'white', borderTopLeftRadius: 22, borderTopRightRadius: 22 },
   sheetHeader: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 },

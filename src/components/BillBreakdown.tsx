@@ -10,7 +10,8 @@ export function BillBreakdown() {
   return <View style={styles.card}>
     <Text style={styles.heading}>Bill details</Text>
     <View style={styles.row}><Text style={styles.label}>Item total</Text><Text style={styles.value}>{formatMoney(bill.itemTotal)}</Text></View>
-    <View style={styles.row}><Text style={styles.label}>Discount</Text><Text style={styles.discount}>−{formatMoney(bill.discount)}</Text></View>
+    {/* Delivery-only offers have no item discount, so omit the zero-value row. */}
+    {bill.discount > 0 && <View style={styles.row}><Text style={styles.label}>Discount</Text><Text style={styles.discount}>−{formatMoney(bill.discount)}</Text></View>}
     <View style={styles.row}><Text style={styles.label}>Delivery fee</Text><Text style={bill.delivery ? styles.value : styles.discount}>{bill.delivery ? formatMoney(bill.delivery) : 'FREE'}</Text></View>
     <View style={[styles.row, styles.total]}><Text style={styles.heading}>Grand total</Text><Text style={styles.heading}>{formatMoney(bill.grandTotal)}</Text></View>
     {bill.baseDelivery > 0 && bill.delivery > 0 && <Text style={styles.note}>Free delivery on an item total of ₹499 or more.</Text>}

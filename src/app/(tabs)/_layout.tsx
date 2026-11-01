@@ -1,6 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Tabs } from 'expo-router';
-import { useWindowDimensions } from 'react-native';
+import { Pressable, useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { theme } from '../../theme/theme';
 
@@ -14,6 +14,18 @@ export default function TabLayout() {
   return (
     <Tabs screenOptions={{
       headerShown: false,
+      // Plain Pressable keeps navigation/a11y props but does not apply the
+      // navigator's default opacity fade or Android ripple while pressing.
+      tabBarButton: props => <Pressable
+        {...props}
+        android_ripple={undefined}
+        ref={node => {
+          // Router exposes an unknown ref type; forward the real native element
+          // through a callback instead of casting it or discarding focus support.
+          if (typeof props.ref === 'function') return props.ref(node);
+          if (props.ref) props.ref.current = node;
+        }}
+      />,
       tabBarActiveTintColor: theme.colors.primary,
       tabBarInactiveTintColor: '#888888',
       tabBarHideOnKeyboard: true,
