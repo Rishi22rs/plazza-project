@@ -42,3 +42,7 @@ yarn-error.*
 
 # Local UI references contain personal address information; do not publish them.
 /design/references/
+
+# Keep project notes, walkthroughs and agent instructions local.
+*.md
+/docs/

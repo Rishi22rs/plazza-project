@@ -5,6 +5,7 @@ import { useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { theme } from '../theme/theme';
+import { PermissionProvider } from '../permissions/PermissionProvider';
 
 /**
  * Expo Router reads this layout before rendering index.tsx or cart.tsx.
@@ -22,7 +23,7 @@ export default function RootLayout() {
   const labelSpace = Math.max(0, fontScale - 1) * 20;
 
   return (
-    <>
+    <PermissionProvider>
     {/* One status-bar owner avoids inactive mounted tabs overriding its color. */}
     <StatusBar style={pathname === '/cart' ? 'dark' : 'light'} />
     <Tabs screenOptions={{
@@ -52,6 +53,6 @@ export default function RootLayout() {
         tabBarIcon: ({ color, focused }) => <Ionicons name={focused ? 'bag' : 'bag-outline'} size={26} color={typeof color === 'string' ? color : theme.colors.primary} />,
       }} />
     </Tabs>
-    </>
+    </PermissionProvider>
   );
 }

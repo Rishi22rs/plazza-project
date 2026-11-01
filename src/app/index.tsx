@@ -5,6 +5,8 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { EmptyState } from '../components/EmptyState';
 import { MobileContent } from '../components/MobileContent';
+import { PermissionPanel } from '../components/PermissionPanel';
+import { usePermissions } from '../permissions/PermissionProvider';
 import { theme } from '../theme/theme';
 
 export default function HomeScreen() {
@@ -12,6 +14,8 @@ export default function HomeScreen() {
   // Later, the search feature will consume this value and provide real results.
   const [query, setQuery] = useState('');
   const insets = useSafeAreaInsets();
+  const { coordinates, locating, permissions } = usePermissions();
+  const deliveryLabel = coordinates ?? (locating ? 'Finding your location…' : permissions.location === 'granted' ? 'Location unavailable' : 'Location not set');
 
   return (
     <View style={styles.screen}>
@@ -26,9 +30,7 @@ export default function HomeScreen() {
               </View>
               <View style={styles.locationText}>
                 <Text style={styles.locationTitle}>Delivering to</Text>
-                {/* Do not invent an address or granted permission. Coordinates
-                    will come from the native location feature in the next part. */}
-                <Text style={styles.locationDescription}>Location not set</Text>
+                <Text style={styles.locationDescription} accessibilityLiveRegion="polite">{deliveryLabel}</Text>
               </View>
             </View>
             <View style={styles.searchBox}>
@@ -54,6 +56,7 @@ export default function HomeScreen() {
           </MobileContent>
         </View>
         <MobileContent>
+          <PermissionPanel />
           <View style={styles.content}>
             <Text style={styles.heading} accessibilityRole="header">Find your medicines</Text>
             <Text style={styles.description}>Search by medicine name or salt.</Text>

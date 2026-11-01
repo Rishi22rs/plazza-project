@@ -32,7 +32,7 @@ export default function CartScreen() {
             <Pressable
               accessibilityRole="button"
               onPress={() => router.navigate('/')}
-              style={({ pressed }) => [styles.button, pressed && styles.pressed]}
+              style={styles.button}
             >
               <Text style={styles.buttonText}>Find medicines</Text>
             </Pressable>
@@ -53,6 +53,5 @@ const styles = StyleSheet.create({
   scroll: { flexGrow: 1, paddingVertical: 28, backgroundColor: theme.colors.surface },
   card: { backgroundColor: theme.colors.white, borderRadius: 20, padding: 20 },
   button: { minHeight: 56, paddingHorizontal: 20, paddingVertical: 16, alignItems: 'center', justifyContent: 'center', borderRadius: 14, backgroundColor: theme.colors.primary },
-  pressed: { opacity: 0.8 },
   buttonText: { fontSize: 16, fontWeight: '700', color: theme.colors.white, textAlign: 'center' },
 });
